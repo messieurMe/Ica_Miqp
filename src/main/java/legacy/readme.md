@@ -1,0 +1,1 @@
+Весь код, находящийся в /legacy, взят отсюда https://github.com/grifguitar/new-ica-connect-subgraph

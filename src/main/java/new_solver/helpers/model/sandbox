@@ -1,0 +1,54 @@
+package new_solver.helpers.model
+
+import ilog.concert.IloNumVar
+
+sealed interface VariableType {
+    @JvmInline
+    value class IloVar(val value: IloNumVar) : VariableType
+
+    @JvmInline
+    value class ActualVar(val value: Double) : VariableType
+}
+
+sealed interface Variables<T : VariableType> {
+
+}
+
+interface AllVariables<T : VariableType> {
+    fun allVariables(): Array<T>
+}
+
+interface BasicVariables<T : VariableType> : Variables<T> {
+    val a: Array<T>
+}
+
+
+interface ConnectedVariables<T : VariableType> {
+    val b: Array<T>
+}
+
+fun <T : VariableType> BasicConnectedVariables(): BasicVariables<T> {
+    return object :
+        BasicVariables<T>,
+        ConnectedVariables<T>,
+        AllVariables<T> {
+
+
+        override fun allVariables(): Array<T> {
+            TODO("Not yet implemented")
+        }
+
+        override val a: Array<T>
+            get() = TODO("Not yet implemented")
+        override val b: Array<T>
+            get() = TODO("Not yet implemented")
+
+    }
+}
+
+fun lol() {
+
+    val x = BasicConnectedVariables<VariableType.ActualVar>()
+
+    x.a[0] + 0.0
+}
